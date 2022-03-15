@@ -5,7 +5,7 @@ import { FooterWrapper } from "./styles";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer style={{ overflow: "hidden" }}>
       <FullWidth borderTop="1px solid red" bgcolor="#c5c5c5">
         <FooterWrapper container spacing={2}>
           <Grid item xs={12} md={4}>

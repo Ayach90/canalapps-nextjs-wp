@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import { PostProps } from "src/types/posts";
-import Boxed from "../layout/Boxed";
+import Boxed from "../../layout/Boxed";
 import PostCard from "./PostCard";
 
 type Props = { posts: PostProps[] };

@@ -1,7 +1,8 @@
-import Layout from "src/components/layout";
-import Boxed from "src/components/layout/Boxed";
+import Layout from "src/layout";
+import Boxed from "src/layout/Boxed";
 import BreadcrumbsPost from "src/pages/Post/BreadcrumbsPost";
 import HeadPost from "src/pages/Post/HeadPost";
+import Content from "src/pages/Post/Content";
 import SocialPost from "src/pages/Post/SocialPost";
 import { AuthorProps, PostProps } from "src/types/posts";
 import { format } from "date-fns";
@@ -41,7 +42,7 @@ const Post = ({ post, author }: Props) => {
           updated={updated}
         />
         <SocialPost slug_id={slug_id} title={title.rendered} />
-        <div dangerouslySetInnerHTML={{ __html: content.rendered }} />
+        <Content content={content.rendered} />
       </Boxed>
     </Layout>
   );

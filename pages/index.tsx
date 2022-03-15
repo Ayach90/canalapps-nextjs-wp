@@ -1,4 +1,4 @@
-import Layout from "src/components/layout";
+import Layout from "src/layout";
 import Head from "next/head";
 import { PostProps } from "src/types/posts";
 import List from "src/components/List";

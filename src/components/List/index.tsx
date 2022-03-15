@@ -1,14 +1,11 @@
 import { Grid } from "@mui/material";
-import Link from "next/link";
-import React from "react";
-import useGetCategoryName from "src/hooks/useGetCategoryName";
 import { PostProps } from "src/types/posts";
-import Boxed from "./layout/Boxed";
+import Boxed from "../layout/Boxed";
 import PostCard from "./PostCard";
 
 type Props = { posts: PostProps[] };
 
-const Archive = ({ posts }: Props) => {
+const List = ({ posts }: Props) => {
   return (
     <Boxed>
       <Grid container spacing={2}>
@@ -20,4 +17,4 @@ const Archive = ({ posts }: Props) => {
   );
 };
 
-export default Archive;
+export default List;

@@ -1,3 +1,4 @@
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = (arg: any, ...args: any) =>
+  fetch(arg, ...args).then((res) => res.json());
 
 export default fetcher;

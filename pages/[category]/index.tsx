@@ -1,20 +1,14 @@
-import React from "react";
-import Archive from "src/components/Archive";
-import Layout from "src/components/layout";
+import Category from "src/pages/Category";
 import { CategoryProps, PathsCategoryProps } from "src/types/categories";
 import { PostProps } from "src/types/posts";
 
 type Props = { posts: PostProps[] };
 
-const Category = ({ posts }: Props) => {
-  return (
-    <Layout>
-      <Archive posts={posts} />
-    </Layout>
-  );
+const CategoryPage = ({ posts }: Props) => {
+  return <Category posts={posts} />;
 };
 
-export default Category;
+export default CategoryPage;
 
 export async function getStaticProps({ params }: any) {
   const resCat = await fetch(
@@ -38,6 +32,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }

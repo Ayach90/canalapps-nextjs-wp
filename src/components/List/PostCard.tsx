@@ -25,7 +25,7 @@ const PostCard = ({ post }: Props) => {
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                {title.rendered}
+                <div dangerouslySetInnerHTML={{ __html: title.rendered }} />
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 <div dangerouslySetInnerHTML={{ __html: excerpt.rendered }} />

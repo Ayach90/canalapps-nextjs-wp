@@ -1,9 +1,15 @@
 import { Grid } from "@mui/material";
 import React from "react";
+import { MenuProps } from "src/types/menus";
 import FullWidth from "../FullWidth";
 import { FooterWrapper } from "./styles";
 
-const Footer = () => {
+type Props = {
+  menuFooter: MenuProps;
+};
+
+const Footer = ({ menuFooter }: Props) => {
+  console.log(menuFooter);
   return (
     <footer style={{ overflow: "hidden" }}>
       <FullWidth borderTop="1px solid red" bgcolor="#c5c5c5">

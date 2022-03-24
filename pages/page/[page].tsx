@@ -1,12 +1,18 @@
+import getMenu from "src/helpers/getMenu";
 import Paginated from "src/pages/Paginated";
+import { MenuProps } from "src/types/menus";
 import { PostProps } from "src/types/posts";
 
 type Props = {
   posts: PostProps[];
+  menuHeader: MenuProps;
+  menuFooter: MenuProps;
 };
 
-const PaginatedPage = ({ posts }: Props) => {
-  return <Paginated posts={posts} />;
+const PaginatedPage = ({ posts, menuHeader, menuFooter }: Props) => {
+  return (
+    <Paginated posts={posts} menuHeader={menuHeader} menuFooter={menuFooter} />
+  );
 };
 
 export default PaginatedPage;
@@ -16,7 +22,9 @@ export async function getStaticProps({ params }: any) {
     `https://www.canalapps.com/wp-json/wp/v2/posts?page=${params.page}`
   );
   const posts = await res.json();
-  return { props: { posts } };
+  const menuHeader = await getMenu("primary-menu-dispatch");
+  const menuFooter = await getMenu("footer");
+  return { props: { posts, menuHeader, menuFooter } };
 }
 
 export async function getStaticPaths() {

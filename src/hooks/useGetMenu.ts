@@ -1,9 +1,9 @@
 import fetcher from "src/helpers/fetcher";
 import useSWR from "swr";
 
-const useGetCategoryName = (id: number) => {
+const useGetMenu = (slug: string) => {
   const { data, error } = useSWR(
-    `https://www.canalapps.com/wp-json/wp/v2/posts?categories=${id}`,
+    `https://www.canalapps.com/wp-json/menus/v1/menus/${slug}`,
     fetcher
   );
   return {
@@ -13,4 +13,4 @@ const useGetCategoryName = (id: number) => {
   };
 };
 
-export default useGetCategoryName;
+export default useGetMenu;

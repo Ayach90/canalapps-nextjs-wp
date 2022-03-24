@@ -1,10 +1,24 @@
+import getMenu from "src/helpers/getMenu";
 import Post from "src/pages/Post";
+import { MenuProps } from "src/types/menus";
 import { AuthorProps, PathsPostProps, PostProps } from "src/types/posts";
 
-type Props = { post: PostProps[]; author: AuthorProps[] };
+type Props = {
+  post: PostProps[];
+  author: AuthorProps[];
+  menuFooter: MenuProps;
+  menuHeader: MenuProps;
+};
 
-const PostPage = ({ post, author }: Props) => {
-  return <Post post={post} author={author} />;
+const PostPage = ({ post, author, menuFooter, menuHeader }: Props) => {
+  return (
+    <Post
+      post={post}
+      author={author}
+      menuFooter={menuFooter}
+      menuHeader={menuHeader}
+    />
+  );
 };
 
 export default PostPage;
@@ -21,7 +35,10 @@ export async function getStaticProps({ params }: any) {
     `https://www.canalapps.com/wp-json/wp/v2/users?include=${post[0].author}`
   );
   const author = await resAuthor.json();
-  return { props: { post, author } };
+
+  const menuHeader = await getMenu("primary-menu-dispatch");
+  const menuFooter = await getMenu("footer");
+  return { props: { post, author, menuFooter, menuHeader } };
 }
 
 export async function getStaticPaths() {

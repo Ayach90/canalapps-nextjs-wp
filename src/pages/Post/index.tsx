@@ -7,10 +7,16 @@ import SocialPost from "src/pages/Post/SocialPost";
 import { AuthorProps, PostProps } from "src/types/posts";
 import { format } from "date-fns";
 import MetaInfoPost from "src/pages/Post/MetaInfoPost";
+import { MenuProps } from "src/types/menus";
 
-type Props = { post: PostProps[]; author: AuthorProps[] };
+type Props = {
+  post: PostProps[];
+  author: AuthorProps[];
+  menuFooter: MenuProps;
+  menuHeader: MenuProps;
+};
 
-const Post = ({ post, author }: Props) => {
+const Post = ({ post, author, menuFooter, menuHeader }: Props) => {
   const {
     title,
     content,
@@ -26,7 +32,7 @@ const Post = ({ post, author }: Props) => {
   const published = format(new Date(date), "MM/dd/yyyy");
   const updated = format(new Date(modified), "MM/dd/yyyy");
   return (
-    <Layout>
+    <Layout menuFooter={menuFooter} menuHeader={menuHeader}>
       <HeadPost seo={yoast_head_json} />
       <Boxed>
         <BreadcrumbsPost

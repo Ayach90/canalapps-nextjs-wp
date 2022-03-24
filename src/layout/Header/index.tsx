@@ -9,10 +9,16 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import Image from "next/image";
+import { MenuProps } from "src/types/menus";
+import Link from "next/link";
 
-const pages = ["Products", "Pricing", "Blog"];
+type Props = {
+  menuHeader: MenuProps;
+};
 
-const Header = () => {
+const Header = ({ menuHeader }: Props) => {
+  const items = menuHeader.items;
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -29,16 +35,20 @@ const Header = () => {
     <AppBar position="static" sx={{ overflow: "hidden" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-          >
-            LOGO
-          </Typography>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Link href="/">
+              <a>
+                <Image
+                  src="/images/logo.png"
+                  width="250px"
+                  height="58px"
+                  alt="Canalapps Logo"
+                />
+              </a>
+            </Link>
+          </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -67,29 +77,33 @@ const Header = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {items.map((item) => (
+                <MenuItem key={item.ID} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{item.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            LOGO
-          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Link href="/">
+              <a>
+                <Image
+                  src="/images/logo.png"
+                  width="250px"
+                  height="58px"
+                  alt="Canalapps Logo"
+                />
+              </a>
+            </Link>
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {items.map((item) => (
               <Button
-                key={page}
+                key={item.ID}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {item.title}
               </Button>
             ))}
           </Box>

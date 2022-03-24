@@ -1,16 +1,24 @@
-import Layout from "src/layout";
-import Head from "next/head";
 import { PostProps } from "src/types/posts";
-import List from "src/components/List";
 import Home from "src/pages/Home";
+import { MenuProps } from "src/types/menus";
+import getMenu from "src/helpers/getMenu";
 
 type Props = {
   posts: PostProps[];
   totalPages: number;
+  menuHeader: MenuProps;
+  menuFooter: MenuProps;
 };
 
-const HomePage = ({ posts, totalPages }: Props) => {
-  return <Home posts={posts} totalPages={totalPages} />;
+const HomePage = ({ posts, totalPages, menuHeader, menuFooter }: Props) => {
+  return (
+    <Home
+      posts={posts}
+      totalPages={totalPages}
+      menuHeader={menuHeader}
+      menuFooter={menuFooter}
+    />
+  );
 };
 
 export default HomePage;
@@ -22,5 +30,12 @@ export async function getStaticProps() {
   const posts = await resPosts.json();
 
   const totalPages = resPosts.headers.get("x-wp-totalpages");
-  return { props: { posts, totalPages }, revalidate: 600 };
+
+  const menuHeader = await getMenu("primary-menu-dispatch");
+  const menuFooter = await getMenu("footer");
+
+  return {
+    props: { posts, totalPages, menuHeader, menuFooter },
+    revalidate: 600,
+  };
 }

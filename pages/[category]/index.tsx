@@ -1,11 +1,19 @@
+import getMenu from "src/helpers/getMenu";
 import Category from "src/pages/Category";
 import { CategoryProps, PathsCategoryProps } from "src/types/categories";
+import { MenuProps } from "src/types/menus";
 import { PostProps } from "src/types/posts";
 
-type Props = { posts: PostProps[] };
+type Props = {
+  posts: PostProps[];
+  menuFooter: MenuProps;
+  menuHeader: MenuProps;
+};
 
-const CategoryPage = ({ posts }: Props) => {
-  return <Category posts={posts} />;
+const CategoryPage = ({ posts, menuHeader, menuFooter }: Props) => {
+  return (
+    <Category posts={posts} menuHeader={menuHeader} menuFooter={menuFooter} />
+  );
 };
 
 export default CategoryPage;
@@ -19,7 +27,9 @@ export async function getStaticProps({ params }: any) {
     `https://www.canalapps.com/wp-json/wp/v2/posts?categories=${category[0].id}`
   );
   const posts = await res.json();
-  return { props: { posts } };
+  const menuHeader = await getMenu("primary-menu-dispatch");
+  const menuFooter = await getMenu("footer");
+  return { props: { posts, menuHeader, menuFooter } };
 }
 
 export async function getStaticPaths() {

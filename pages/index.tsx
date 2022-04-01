@@ -2,6 +2,7 @@ import { PostProps } from "src/types/posts";
 import Home from "src/pages/Home";
 import { MenuProps } from "src/types/menus";
 import getMenu from "src/helpers/getMenu";
+import Script from "next/script";
 
 type Props = {
   posts: PostProps[];
@@ -12,12 +13,14 @@ type Props = {
 
 const HomePage = ({ posts, totalPages, menuHeader, menuFooter }: Props) => {
   return (
-    <Home
-      posts={posts}
-      totalPages={totalPages}
-      menuHeader={menuHeader}
-      menuFooter={menuFooter}
-    />
+    <>
+      <Home
+        posts={posts}
+        totalPages={totalPages}
+        menuHeader={menuHeader}
+        menuFooter={menuFooter}
+      />
+    </>
   );
 };
 
@@ -25,7 +28,7 @@ export default HomePage;
 
 export async function getStaticProps() {
   const resPosts = await fetch(
-    `https://www.canalapps.com/wp-json/wp/v2/posts?page=1`
+    `https://www.canalapps.com/wp-json/wp/v2/posts?page=1&per_page=9`
   );
   const posts = await resPosts.json();
 

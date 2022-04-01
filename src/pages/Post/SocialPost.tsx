@@ -11,7 +11,7 @@ const SocialPost = ({ title, slug_id, ...props }: Props) => {
       <Button
         variant="contained"
         startIcon={<WhatsAppIcon />}
-        sx={{ backgroundColor: "#25D366" }}
+        sx={{ backgroundColor: "#25D366", color: "common.white" }}
         size="small"
         onClick={() =>
           window.open(
@@ -24,7 +24,7 @@ const SocialPost = ({ title, slug_id, ...props }: Props) => {
       <Button
         variant="contained"
         startIcon={<TwitterIcon />}
-        sx={{ backgroundColor: "#00ACEE" }}
+        sx={{ backgroundColor: "#00ACEE", color: "common.white" }}
         size="small"
         onClick={() =>
           window.open(
@@ -37,7 +37,7 @@ const SocialPost = ({ title, slug_id, ...props }: Props) => {
       <Button
         variant="contained"
         startIcon={<FacebookIcon />}
-        sx={{ backgroundColor: "#3B5998" }}
+        sx={{ backgroundColor: "#3B5998", color: "common.white" }}
         size="small"
         onClick={() =>
           window.open(

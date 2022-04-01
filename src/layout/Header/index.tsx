@@ -1,17 +1,22 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import Image from "next/image";
+
 import { MenuProps } from "src/types/menus";
+import Logo from "src/components/Logo";
+import { Router, useRouter } from "next/router";
 import Link from "next/link";
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 
 type Props = {
   menuHeader: MenuProps;
@@ -31,21 +36,14 @@ const Header = ({ menuHeader }: Props) => {
     setAnchorElNav(null);
   };
 
+  const router = useRouter();
+
   return (
-    <AppBar position="static" sx={{ overflow: "hidden" }}>
+    <AppBar position="static" sx={{ overflow: "hidden" }} color="secondary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link href="/">
-              <a>
-                <Image
-                  src="/images/logo.png"
-                  width="250px"
-                  height="58px"
-                  alt="Canalapps Logo"
-                />
-              </a>
-            </Link>
+            <Logo />
           </Box>
 
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -78,29 +76,28 @@ const Header = ({ menuHeader }: Props) => {
               }}
             >
               {items.map((item) => (
-                <MenuItem key={item.ID} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{item.title}</Typography>
-                </MenuItem>
+                <Link key={item.ID} href={item.url} passHref>
+                  <MenuItem>
+                    <Typography textAlign="center">{item.title}</Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <Link href="/">
-              <a>
-                <Image
-                  src="/images/logo.png"
-                  width="250px"
-                  height="58px"
-                  alt="Canalapps Logo"
-                />
-              </a>
-            </Link>
+          <Box
+            sx={{
+              flexGrow: 1,
+              paddingLeft: "32px",
+              display: { xs: "flex", md: "none" },
+            }}
+          >
+            <Logo width={150} height={35} />
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {items.map((item) => (
               <Button
                 key={item.ID}
-                onClick={handleCloseNavMenu}
+                onClick={() => router.push(item.url)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {item.title}

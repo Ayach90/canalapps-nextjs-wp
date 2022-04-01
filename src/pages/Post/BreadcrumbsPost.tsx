@@ -19,9 +19,6 @@ const BreadcrumbsPost = ({ category, title, ...props }: Props) => {
       <Link underline="hover" color="inherit" href={`/${category.slug}`}>
         <Typography variant="body2">{category.name}</Typography>
       </Link>
-      <Typography variant="body2" color="text.primary">
-        {title}
-      </Typography>
     </Breadcrumbs>
   );
 };

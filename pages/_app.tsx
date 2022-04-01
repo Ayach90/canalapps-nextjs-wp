@@ -1,11 +1,17 @@
 import type { AppProps } from "next/app";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import theme from "src/theme";
+import Script from "next/script";
+import Ganalytics4 from "src/Ganalytics4";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <CssBaseline />
-      <Component {...pageProps} />
+      <Ganalytics4 />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 }

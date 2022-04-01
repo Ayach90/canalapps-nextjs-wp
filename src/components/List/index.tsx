@@ -1,4 +1,4 @@
-import { Grid, Pagination, PaginationItem, Stack } from "@mui/material";
+import { Box, Grid, Pagination, PaginationItem, Stack } from "@mui/material";
 import { PostProps } from "src/types/posts";
 import Boxed from "../../layout/Boxed";
 import PostCard from "./PostCard";
@@ -17,7 +17,7 @@ const List = ({ posts }: Props) => {
           return <PostCard key={post.id} post={post} />;
         })}
       </Grid>
-      <Stack spacing={2}>
+      <Box display="flex" justifyContent="center" pt={3} pb={1}>
         <Pagination
           page={page}
           count={10}
@@ -30,7 +30,7 @@ const List = ({ posts }: Props) => {
             />
           )}
         />
-      </Stack>
+      </Box>
     </Boxed>
   );
 };

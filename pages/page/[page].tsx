@@ -19,7 +19,7 @@ export default PaginatedPage;
 
 export async function getStaticProps({ params }: any) {
   const res = await fetch(
-    `https://www.canalapps.com/wp-json/wp/v2/posts?page=${params.page}`
+    `https://www.canalapps.com/wp-json/wp/v2/posts?page=${params.page}&per_page=9`
   );
   const posts = await res.json();
   const menuHeader = await getMenu("primary-menu-dispatch");
@@ -28,7 +28,9 @@ export async function getStaticProps({ params }: any) {
 }
 
 export async function getStaticPaths() {
-  const resPosts = await fetch(`https://www.canalapps.com/wp-json/wp/v2/posts`);
+  const resPosts = await fetch(
+    `https://www.canalapps.com/wp-json/wp/v2/posts?per_page=9`
+  );
   const totalPages: number = +(resPosts.headers.get("x-wp-totalpages") || 1);
   const paths = [];
 

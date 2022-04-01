@@ -1,6 +1,8 @@
 import { Box, styled } from "@mui/material";
+import theme from "src/theme";
 
-export const ContentWrapper = styled(Box)({
+export const ContentWrapper = styled(Box)(({ theme }) => ({
+  a: { color: theme.palette.primary.main },
   ".gallery": {
     img: {
       width: "100%",
@@ -14,4 +16,4 @@ export const ContentWrapper = styled(Box)({
     width: "100% !important",
     margin: 0,
   },
-});
+}));

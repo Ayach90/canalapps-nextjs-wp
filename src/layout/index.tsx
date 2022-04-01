@@ -1,5 +1,6 @@
 import { BoxProps } from "@mui/material";
 import Head from "next/head";
+import Script from "next/script";
 import React, { ReactChild, ReactNode } from "react";
 import { MenuProps } from "src/types/menus";
 import Footer from "./Footer";

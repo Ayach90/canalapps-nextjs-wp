@@ -15,7 +15,7 @@ const SocialPost = ({ title, slug_id, ...props }: Props) => {
         size="small"
         onClick={() =>
           window.open(
-            `https://wa.me/?text=${title} http://localhost:3000/${slug_id}`
+            `https://wa.me/?text=${title} https://www.canalapps.com/${slug_id}`
           )
         }
       >
@@ -28,7 +28,7 @@ const SocialPost = ({ title, slug_id, ...props }: Props) => {
         size="small"
         onClick={() =>
           window.open(
-            `https://twitter.com/intent/tweet?url=http://localhost:3000/${slug_id}&text=${title}`
+            `https://twitter.com/intent/tweet?url=https://www.canalapps.com/${slug_id}&text=${title}`
           )
         }
       >
@@ -41,7 +41,7 @@ const SocialPost = ({ title, slug_id, ...props }: Props) => {
         size="small"
         onClick={() =>
           window.open(
-            `https://www.facebook.com/sharer.php?u=http://localhost:3000/${slug_id}`
+            `https://www.facebook.com/sharer.php?u=https://www.canalapps.com/${slug_id}`
           )
         }
       >

@@ -28,7 +28,7 @@ export default HomePage;
 
 export async function getStaticProps() {
   const resPosts = await fetch(
-    `https://www.canalapps.com/wp-json/wp/v2/posts?page=1&per_page=9`
+    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/posts?page=1&per_page=9`
   );
   const posts = await resPosts.json();
 

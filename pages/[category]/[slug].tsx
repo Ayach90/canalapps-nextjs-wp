@@ -28,11 +28,11 @@ export async function getStaticProps({ params }: any) {
   splitSlug.pop();
   const slug = splitSlug.join("-");
   const resPost = await fetch(
-    `https://www.canalapps.com/wp-json/wp/v2/posts?slug=${slug}`
+    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/posts?slug=${slug}`
   );
   const post = await resPost.json();
   const resAuthor = await fetch(
-    `https://www.canalapps.com/wp-json/wp/v2/users?include=${post[0].author}`
+    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/users?include=${post[0].author}`
   );
   const author = await resAuthor.json();
 
@@ -42,7 +42,9 @@ export async function getStaticProps({ params }: any) {
 }
 
 export async function getStaticPaths() {
-  const resPosts = await fetch(`https://www.canalapps.com/wp-json/wp/v2/posts`);
+  const resPosts = await fetch(
+    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/posts`
+  );
   const posts = await resPosts.json();
 
   const paths: PathsPostProps[] = [];

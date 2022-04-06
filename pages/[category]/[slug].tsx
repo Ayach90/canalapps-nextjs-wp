@@ -1,3 +1,4 @@
+import { URL_BACKEND } from "src/constants";
 import getMenu from "src/helpers/getMenu";
 import Post from "src/pages/Post";
 import { MenuProps } from "src/types/menus";
@@ -27,12 +28,10 @@ export async function getStaticProps({ params }: any) {
   const splitSlug = params.slug.split("-");
   splitSlug.pop();
   const slug = splitSlug.join("-");
-  const resPost = await fetch(
-    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/posts?slug=${slug}`
-  );
+  const resPost = await fetch(`${URL_BACKEND}wp-json/wp/v2/posts?slug=${slug}`);
   const post = await resPost.json();
   const resAuthor = await fetch(
-    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/users?include=${post[0].author}`
+    `${URL_BACKEND}wp-json/wp/v2/users?include=${post[0].author}`
   );
   const author = await resAuthor.json();
 
@@ -42,9 +41,7 @@ export async function getStaticProps({ params }: any) {
 }
 
 export async function getStaticPaths() {
-  const resPosts = await fetch(
-    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/posts`
-  );
+  const resPosts = await fetch(`${URL_BACKEND}wp-json/wp/v2/posts`);
   const posts = await resPosts.json();
 
   const paths: PathsPostProps[] = [];

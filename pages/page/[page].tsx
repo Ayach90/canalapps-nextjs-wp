@@ -1,3 +1,4 @@
+import { URL_BACKEND } from "src/constants";
 import getMenu from "src/helpers/getMenu";
 import Paginated from "src/pages/Paginated";
 import { MenuProps } from "src/types/menus";
@@ -19,7 +20,7 @@ export default PaginatedPage;
 
 export async function getStaticProps({ params }: any) {
   const res = await fetch(
-    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/posts?page=${params.page}&per_page=9`
+    `${URL_BACKEND}wp-json/wp/v2/posts?page=${params.page}&per_page=9`
   );
   const posts = await res.json();
   const menuHeader = await getMenu("primary-menu-dispatch");
@@ -28,9 +29,7 @@ export async function getStaticProps({ params }: any) {
 }
 
 export async function getStaticPaths() {
-  const resPosts = await fetch(
-    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/posts?per_page=9`
-  );
+  const resPosts = await fetch(`${URL_BACKEND}wp-json/wp/v2/posts?per_page=9`);
   const totalPages: number = +(resPosts.headers.get("x-wp-totalpages") || 1);
   const paths = [];
 

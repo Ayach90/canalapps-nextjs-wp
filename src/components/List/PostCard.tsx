@@ -4,6 +4,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, Grid, Link } from "@mui/material";
 import { PostProps } from "src/types/posts";
+import { URL_DOMAIN } from "src/constants";
 
 type Props = {
   post: PostProps;
@@ -14,7 +15,7 @@ const PostCard = ({ post }: Props) => {
   const slug = link.split(".com/");
   return (
     <Grid item xs={12} md={4}>
-      <Link href={`https://www.canalapps.com/${slug[1]}`} underline="none">
+      <Link href={`${URL_DOMAIN}${slug[1]}`} underline="none">
         <Card sx={{ maxWidth: 345 }}>
           <CardActionArea>
             <CardMedia

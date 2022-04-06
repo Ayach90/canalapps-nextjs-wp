@@ -1,9 +1,10 @@
+import { URL_BACKEND } from "src/constants";
 import fetcher from "src/helpers/fetcher";
 import useSWR from "swr";
 
 const useGetMenu = (slug: string) => {
   const { data, error } = useSWR(
-    `https://admin-wp-back.canalapps.com/wp-json/menus/v1/menus/${slug}`,
+    `${URL_BACKEND}wp-json/menus/v1/menus/${slug}`,
     fetcher
   );
   return {

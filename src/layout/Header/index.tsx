@@ -4,19 +4,20 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import { MenuProps } from "src/types/menus";
 import Logo from "src/components/Logo";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import {
   AppBar,
   Box,
-  Button,
   Container,
   IconButton,
   Menu,
   MenuItem,
+  styled,
   Toolbar,
   Typography,
 } from "@mui/material";
+import { HeaderLink, MenuList } from "./styles";
 
 type Props = {
   menuHeader: MenuProps;
@@ -76,7 +77,11 @@ const Header = ({ menuHeader }: Props) => {
               }}
             >
               {items.map((item) => (
-                <Link key={item.ID} href={item.url} passHref>
+                <Link
+                  key={item.ID}
+                  href={`${process.env.NEXT_PUBLIC_URL_DOMAIN}/${item.slug}`}
+                  passHref
+                >
                   <MenuItem>
                     <Typography textAlign="center">{item.title}</Typography>
                   </MenuItem>
@@ -94,15 +99,20 @@ const Header = ({ menuHeader }: Props) => {
             <Logo width={150} height={35} />
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {items.map((item) => (
-              <Button
-                key={item.ID}
-                onClick={() => router.push(item.url)}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {item.title}
-              </Button>
-            ))}
+            <nav>
+              <MenuList>
+                {items.map((item) => (
+                  <li key={item.ID}>
+                    <Link
+                      href={`${process.env.NEXT_PUBLIC_URL_DOMAIN}/${item.slug}`}
+                      passHref
+                    >
+                      <HeaderLink>{item.title}</HeaderLink>
+                    </Link>
+                  </li>
+                ))}
+              </MenuList>
+            </nav>
           </Box>
         </Toolbar>
       </Container>

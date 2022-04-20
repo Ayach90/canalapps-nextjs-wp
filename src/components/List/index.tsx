@@ -4,10 +4,11 @@ import Boxed from "../../layout/Boxed";
 import PostCard from "./PostCard";
 import { useRouter } from "next/router";
 
-type Props = { posts: PostProps[] };
+type Props = { posts: PostProps[]; totalPages: number };
 
-const List = ({ posts }: Props) => {
+const List = ({ posts, totalPages }: Props) => {
   const router = useRouter();
+  console.log(typeof totalPages);
   const pageSplit = router.asPath.split("page/");
   const page = parseInt(pageSplit[1]) || 1;
   return (
@@ -20,7 +21,7 @@ const List = ({ posts }: Props) => {
       <Box display="flex" justifyContent="center" pt={3} pb={1}>
         <Pagination
           page={page}
-          count={10}
+          count={totalPages}
           color="primary"
           renderItem={(item) => (
             <PaginationItem

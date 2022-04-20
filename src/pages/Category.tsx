@@ -7,12 +7,13 @@ type Props = {
   posts: PostProps[];
   menuFooter: MenuProps;
   menuHeader: MenuProps;
+  totalPages: number;
 };
 
-const Category = ({ posts, menuFooter, menuHeader }: Props) => {
+const Category = ({ posts, menuFooter, menuHeader, totalPages }: Props) => {
   return (
     <Layout menuFooter={menuFooter} menuHeader={menuHeader}>
-      <List posts={posts} />
+      <List posts={posts} totalPages={totalPages} />
     </Layout>
   );
 };

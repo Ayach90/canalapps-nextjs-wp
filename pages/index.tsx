@@ -2,7 +2,6 @@ import { PostProps } from "src/types/posts";
 import Home from "src/pages/Home";
 import { MenuProps } from "src/types/menus";
 import getMenu from "src/helpers/getMenu";
-import { URL_BACKEND } from "src/constants";
 
 type Props = {
   posts: PostProps[];
@@ -28,7 +27,7 @@ export default HomePage;
 
 export async function getStaticProps() {
   const resPosts = await fetch(
-    `${URL_BACKEND}wp-json/wp/v2/posts?page=1&per_page=9`
+    `${process.env.NEXT_PUBLIC_URL_BACKEND}/wp-json/wp/v2/posts?page=1&per_page=9`
   );
   const posts = await resPosts.json();
 

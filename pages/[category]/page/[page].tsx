@@ -10,7 +10,7 @@ type Props = {
   totalPages: number;
 };
 
-const PaginatedPage = ({
+const PaginatedCategoryPage = ({
   posts,
   menuHeader,
   menuFooter,
@@ -26,10 +26,9 @@ const PaginatedPage = ({
   );
 };
 
-export default PaginatedPage;
+export default PaginatedCategoryPage;
 
 export async function getStaticProps({ params }: any) {
-  //HE DE REBRE EL PAGE I LA CATEGORIA
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_URL_BACKEND}/wp-json/wp/v2/posts?page=${params.page}&per_page=9`
   );
@@ -41,7 +40,6 @@ export async function getStaticProps({ params }: any) {
 }
 
 export async function getStaticPaths() {
-  //LOOP TOTES LES CATEGORIES I PARA CADA UNA TOTES LES PAGE
   const resPosts = await fetch(
     `${process.env.NEXT_PUBLIC_URL_BACKEND}/wp-json/wp/v2/posts?per_page=9`
   );

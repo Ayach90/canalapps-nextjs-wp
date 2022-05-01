@@ -11,6 +11,7 @@ const List = ({ posts, totalPages }: Props) => {
   const pageSplit = router.asPath.split("page/");
   const page = Number(pageSplit[1]) || 1;
   const category = (pageSplit[0] || "").replace("/", "");
+  console.log("cat", category);
   return (
     <Boxed>
       <Grid container spacing={2}>
@@ -28,8 +29,8 @@ const List = ({ posts, totalPages }: Props) => {
               component="a"
               href={`${
                 item.page === 1
-                  ? `/${category}`
-                  : `/${category}page/${item.page}`
+                  ? `${category}`
+                  : `${category}/page/${item.page}`
               }`}
               {...item}
             />

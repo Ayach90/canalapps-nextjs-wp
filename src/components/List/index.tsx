@@ -8,9 +8,9 @@ type Props = { posts: PostProps[]; totalPages: number };
 
 const List = ({ posts, totalPages }: Props) => {
   const router = useRouter();
-  console.log(typeof totalPages);
   const pageSplit = router.asPath.split("page/");
-  const page = parseInt(pageSplit[1]) || 1;
+  const page = Number(pageSplit[1]) || 1;
+  const category = (pageSplit[0] || "").replace("/", "");
   return (
     <Boxed>
       <Grid container spacing={2}>
@@ -26,7 +26,11 @@ const List = ({ posts, totalPages }: Props) => {
           renderItem={(item) => (
             <PaginationItem
               component="a"
-              href={`${item.page === 1 ? "/" : `/page/${item.page}`}`}
+              href={`${
+                item.page === 1
+                  ? `/${category}`
+                  : `/${category}page/${item.page}`
+              }`}
               {...item}
             />
           )}

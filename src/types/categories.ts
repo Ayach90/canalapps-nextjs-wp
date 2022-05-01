@@ -10,3 +10,10 @@ export type PathsCategoryProps = {
     category: string;
   };
 };
+
+export type PathsCategoryPropsPaginated = {
+  params: {
+    category: string;
+    page: string;
+  };
+};

@@ -36,8 +36,7 @@ export async function getStaticProps({ params }: any) {
   const menuHeader = await getMenu("primary-menu-dispatch");
   const menuFooter = await getMenu("footer");
   const totalPages = res.headers.get("x-wp-totalpages");
-  const totalPagesInt = parseInt(totalPages || 1);
-  return { props: { posts, menuHeader, menuFooter, totalPagesInt } };
+  return { props: { posts, menuHeader, menuFooter, totalPages } };
 }
 
 export async function getStaticPaths() {

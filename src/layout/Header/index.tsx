@@ -79,7 +79,7 @@ const Header = ({ menuHeader }: Props) => {
               {items.map((item) => (
                 <Link
                   key={item.ID}
-                  href={`${process.env.NEXT_PUBLIC_URL_DOMAIN}/${item.slug}`}
+                  href={`https://www.canalapps.com/${item.slug}`}
                   passHref
                 >
                   <MenuItem>
@@ -104,7 +104,7 @@ const Header = ({ menuHeader }: Props) => {
                 {items.map((item) => (
                   <li key={item.ID}>
                     <Link
-                      href={`${process.env.NEXT_PUBLIC_URL_DOMAIN}/${item.slug}`}
+                      href={`https://www.canalapps.com/${item.slug}`}
                       passHref
                     >
                       <HeaderLink>{item.title}</HeaderLink>

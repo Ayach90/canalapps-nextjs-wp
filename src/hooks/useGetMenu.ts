@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 const useGetMenu = (slug: string) => {
   const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_URL_BACKEND}/wp-json/menus/v1/menus/${slug}`,
+    `https://admin-wp-back.canalapps.com/wp-json/menus/v1/menus/${slug}`,
     fetcher
   );
   return {

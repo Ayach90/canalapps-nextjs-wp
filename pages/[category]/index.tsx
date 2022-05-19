@@ -26,11 +26,11 @@ export default CategoryPage;
 
 export async function getStaticProps({ params }: any) {
   const resCat = await fetch(
-    `${process.env.NEXT_PUBLIC_URL_BACKEND}/wp-json/wp/v2/categories?slug=${params.category}`
+    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/categories?slug=${params.category}`
   );
   const category = await resCat.json();
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_URL_BACKEND}/wp-json/wp/v2/posts?categories=${category[0].id}&per_page=9`
+    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/posts?categories=${category[0].id}&per_page=9`
   );
   const posts = await res.json();
   const menuHeader = await getMenu("primary-menu-dispatch");
@@ -41,7 +41,7 @@ export async function getStaticProps({ params }: any) {
 
 export async function getStaticPaths() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_URL_BACKEND}/wp-json/wp/v2/categories`
+    `https://admin-wp-back.canalapps.com/wp-json/wp/v2/categories`
   );
   const categories = await res.json();
   const paths: PathsCategoryProps[] = [];
